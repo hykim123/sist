@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<article>
+		<header>
+			<h1>서블릿에 인자 보내기</h1>
+		</header>
+		<section>
+			<form action="ex5" method="get">
+				<label for="u_name1">친구1:</label>
+				<input type="text" id="u_name1" name="f_name">
+				<br/>
+				
+				<label for="u_name2">친구2:</label>
+				<input type="text" id="u_name2" name="f_name">
+				<br/>
+				
+				<label for="u_name3">친구3:</label>
+				<input type="text" id="u_name3" name="f_name">
+				<br/>
+				
+				<label for="u_name4">친구4:</label>
+				<input type="text" id="u_name4" name="f_name">
+				<br/>
+				
+				<label for="u_name5">친구5:</label>
+				<input type="text" id="u_name5" name="f_name">
+				<br/>
+				
+				
+				<button type="button" onclick="sendData()">보내기</button>
+			</form>
+		</section>
+	</article>
+<script>
+	function sendData(){
+		
+		document.forms[0].submit(); //서버로 보낸다
+	}
+</script>
+</body>
+</html>

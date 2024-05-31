@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="wrap">
+		<header>
+			<h1>가입 폼</h1>
+		</header>
+		<article>
+			<form action="Ex6Servlet" method="get">
+				<table>
+					<caption>가입폼의 테이블</caption>
+					<colgroup>
+						<col width="70px" />
+						<col width="*" />
+					</colgroup>
+					<tbody>
+						<tr>
+							<td><label for="s_id">아이디:</label></td>
+							<td><input type="text" id="s_id" name="u_id" data-msg="아이디" /></td>
+						</tr>
+						<tr>
+							<td><label for="s_pw">비밀번호:</label></td>
+							<td><input type="password" id="s_pw" name="u_pw"
+								data-msg="비밀번호" /></td>
+						</tr>
+						<tr>
+							<td><label for="s_name">이름:</label></td>
+							<td><input type="text" id="s_name" name="u_name"
+								data-msg="이름" /></td>
+						</tr>
+						<tr>
+							<td><label for="s_email">이메일:</label></td>
+							<td><input type="text" id="s_email" name="u_email"
+								data-msg="이메일" /> <label for="s_email2">@</label> <input
+								type="text" id="s_email2" name="u_email" /> <select
+								id="sel_email">
+									<option>직접선택</option>
+									<option value="gmail.com">구글</option>
+									<option value="naver.com">네이버</option>
+									<option value="daum.net">다음</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td><label for="s_hobby">취미:</label></td>
+							<td><input type="checkbox" id="s_hobby" name="u_hobby"
+								value="독서" /> <span>독서</span>&nbsp;&nbsp; <input
+								type="checkbox" id="s_hobby2" name="u_hobby" value="음악감상" /> <span>음악감상</span>&nbsp;&nbsp;
+								<input type="checkbox" id="s_hobby3" name="u_hobby" value="영화감상" />
+								<span>"영화감상"</span>&nbsp;&nbsp;</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<button type="button" id="btn">보내기</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</article>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+		crossorigin="anonymous"></script>
+	<script>
+		$(function(){
+			//아이디가 btn인 요소에 클릭이벤트 적용
+			$("#btn").click(function(){
+				//먼저 폼안에 있는 모든 요소들을 가져온다.
+				let ar = document.forms[0].elements;
+				
+				// 받은 하위요소들 중 아이디, 비밀번호, 이름 만 유효성 검사
+				for(let i=0; i<ar.length-1; i++){
+					if(i >= 3)
+						break; //아이디, 비밀번호, 이름만 검사하기 위해서
+					if(ar[i].value.trim().length < 1){
+						//입력하지 않은 경우
+						alert(ar[i].dataset.msg + "을 입력하세요");
+						ar[i].value = ""; //청소
+						ar[i].focus();
+						return;
+					}
+				}//for의 끝
+				document.forms[0].submit();
+			});
+			
+			$("#sel_email").change(function(){
+				//이메일 선택을 변경할 때
+				let thisVal = $(this).val(); //현재 선택된 값
+				let thisText = $("#sel_email option:selected").text();
+				console.log(thisVal + "/" + thisText);
+				$("#s_email2").val(thisVal);
+			});
+		});
+	</script>
+</body>
+</html>

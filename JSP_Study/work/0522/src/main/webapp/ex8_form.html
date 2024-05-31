@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="Ex8Servlet" method="post" name="frm">
+				<table>
+					<tbody>
+						
+						<tr>
+							<td>
+							 <select id="select" name="select">
+									<option>직접선택</option>
+									<option value="empno">사번</option>
+									<option value="ename">이름</option>
+									<option value="job">직종</option>
+							</select>
+							<input type="text" id="select2" name="select2" />
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<button type="button" id="btn">검색</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+		crossorigin="anonymous"></script>
+	<script>
+	
+	$(function(){
+		//아이디가 btn인 요소에 클릭이벤트 적용
+		$("#btn").click(function(){
+			//사용자가 선택하고 입력한 검색어를 받아내야한다.
+			let value = $("#select2").val();
+			
+			if(value.trim().length < 1){
+				alert("검색할 단어를 입력하세요");
+				$("#select2").val(""); // 청소
+				$("#select2").focus();
+				return;
+			}
+				//document.forms[0].submit();
+				document.frm.submit();
+		});
+	
+	});
+	</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	
+	<select id="check_id" resultType="am.vo.MemVO" parameterType="String">
+		select * from member_t
+		where m_id = #{id}
+	</select>
+	
+	<insert id="add" parameterType="am.vo.MemVO">
+		insert into member_t (m_id, m_pw, m_name, m_email, m_phone, write_date) 
+		values(#{m_id}, #{m_pw}, #{m_name}, #{m_email}, #{m_phone}, now())
+	</insert>
+</mapper>

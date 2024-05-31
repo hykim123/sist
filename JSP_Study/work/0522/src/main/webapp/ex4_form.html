@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<article>
+		<header>
+			<h1>서블릿에 인자 보내기</h1>
+		</header>
+		<section>
+			<form action="ex4" method="post">
+				<label for="u_name">이름:</label>
+				<input type="text" id="u_name" name="m_name">
+				<br/>
+				
+				<label for="u_hobby">취미:</label>
+				<input type="checkbox" id="u_hobby" name="m_hobby" value="독서"/>
+				<span>독서</span>&nbsp;&nbsp;
+				<input type="checkbox" id="u_hobby2" name="m_hobby" value="음악감상"/>
+				<span>음악감상</span>&nbsp;&nbsp;
+				<input type="checkbox" id="u_hobby3" name="m_hobby" value="클래식기타"/>
+				<span>클래식기타</span>&nbsp;&nbsp;
+				<input type="checkbox" id="u_hobby4" name="m_hobby" value="영화감상"/>
+				<span>영화감상</span>&nbsp;&nbsp;
+				
+				<br/>
+				
+				<button type="button" onclick="sendData()">보내기</button>
+			</form>
+		</section>
+	</article>
+<script>
+	function sendData(){
+		//사용자가 입력한 값들 중 아이디, 이름 검증
+		let mname = document.getElementById("u_name");
+		let s_name = mname.value.trim();
+	
+		if(s_name.length < 1){
+			alert("아이디 입력해라");
+			mname.value = "";
+			mname.focus();
+			return;
+		}
+		
+		//폼 접근
+		document.forms[0].submit(); //서버로 보낸다
+	}
+</script>
+</body>
+</html>

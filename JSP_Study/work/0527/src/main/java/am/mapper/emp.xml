@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="emp">
+	
+	<select id="select" resultType="am.vo.EmpVO">
+		select * from emp
+	</select>
+	
+	<!-- 검색 동적쿼리(어떤 컬럼에 어떤 자원을..) -->
+	<select id="search" parameterType="Map" resultType="am.vo.EmpVO">
+		select * from emp
+		<where>
+			<choose>
+				<when test="searchType == 1">
+					empno = #{searchValue}
+				</when>
+				<when test="searchType == 2">
+					ename LIKE CONCAT('%', #{searchValue}, '%')
+				</when>
+				<when test="searchType == 3">
+					job LIKE CONCAT('%', #{searchValue}, '%')
+				</when>
+				<when test="searchType == 4">
+					deptno = #{searchValue}
+				</when>
+			</choose>
+		</where>
+	</select>
+</mapper>

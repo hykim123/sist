@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="emp">
+  <select id="all" resultType="pm.vo.EmpVO">
+    select * from emp
+  </select>
+  
+   <select id="select" resultType="pm.vo.EmpVO" parameterType="Map">
+     select * from emp
+     <where>
+	     <if test="select != null and select2 != null">
+		      <choose>
+		         <when test="select.equals('empno')">
+		            empno = #{select2}
+		         </when>
+		         <when test="select.equals('ename')">
+		            ename LIKE CONCAT('%',#{select2},'%')
+		         </when>
+		         <when test="select.equals('job')">
+		            job LIKE CONCAT('%',#{select2},'%')
+		         </when>
+		      </choose>
+   		</if>
+   </where>
+  </select>
+</mapper>
