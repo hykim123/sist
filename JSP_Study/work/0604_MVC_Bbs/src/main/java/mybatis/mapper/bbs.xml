@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bbs">
+
+	<resultMap type="mybatis.vo.BbsVO" id="map1">
+		<!-- 기본키 설정 -->
+		<id property="b_idx" column="b_idx"/>
+		<collection property="c_list" ofType="mybatis.vo.CommVO" select="comm.comm_list" column="b_idx"/>
+	</resultMap>
+	
+	
+	<!-- 게시물 목록을 만들기 위한 select -->
+	<select id="list" parameterType="Map" resultMap="map1">
+		SELECT * FROM (SELECT @RN:=@RN+1 AS rnum, a.* FROM(
+						SELECT * FROM bbs_t 
+						WHERE status = 0 
+						AND bname = #{bname}
+						ORDER BY b_idx DESC
+						) a, (SELECT @RN:=0) b
+		) c WHERE c.rnum BETWEEN #{begin} AND #{end}
+	</select>
+
+</mapper>
